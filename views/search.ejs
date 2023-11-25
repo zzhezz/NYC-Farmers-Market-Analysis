@@ -1,0 +1,47 @@
+<head>
+    <link rel="stylesheet" href="/styesheets/search.css">
+</head>
+
+<div class="search-container">
+    <form action="/results" method="get">
+        <select name="borough">
+            <option value="">Select Borough</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="brooklyn">Brooklyn</option>
+            <option value="bronx">Bronx</option>
+            <option value="queens">Queens</option>
+            <option value="staten island">Staten Island</option>
+        </select>
+
+        <input type="text" name="marketName" placeholder="Market Name">
+
+        <select name="daysOpened">
+            <option value="">Select Day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thurday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+
+        </select>
+
+        <select name="activities">
+            <option value="">Select Activities for Kids</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <select name="acceptsEBT">
+            <option value="">Select Accepts EBT</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <input type="text" name="communityDistrict" placeholder="community District">
+
+
+        <button type="submit">Apply</button>
+    </form>
+</div>
