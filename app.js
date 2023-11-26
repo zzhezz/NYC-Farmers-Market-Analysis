@@ -1,12 +1,27 @@
 var express = require('express');
 var app = express();
 const path = require('path');
+const mongoose = require("mongoose");
+const Market = require('./models/market');
+const methodOverride = require('method-override');
+
 require('dotenv').config();
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 const map_api = process.env.mapboxToken;
+app.use(express.urlencoded({ extended: true}));
+app.use(methodOverride('_method'));
 const axios = require('axios');
 
+mongoose.connect("mongodb://127.0.0.1:27017/test", {
+  useNewUrlParser: true
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection Error"));
+db.once("open", () =>{
+  console.log("Database connected");
+});
 
 app.get('/', (req, res) => {
     res.render('main');
@@ -19,6 +34,43 @@ app.get('/map', (req,res)=>{
 app.get('/search', (req, res) => {
     res.render('search');
 });
+
+app.get('/markets', async (req, res)=>{
+  const markets = await Market.find({});
+  res.render('markets/index', { markets })
+});
+
+app.get('/markets/new', (req, res) => {
+    res.render('markets/new');
+})
+
+app.post('/markets', async (req, res) => {
+    const market = new Market(req.body.market);
+    await market.save();
+    res.redirect(`/markets/${market._id}`)
+})
+
+app.get('/markets/:id', async (req, res,) => {
+    const market = await Market.findById(req.params.id)
+    res.render('markets/show', { market });
+});
+
+app.get('/markets/:id/edit', async (req, res) => {
+    const market = await Market.findById(req.params.id)
+    res.render('markets/edit', { market });
+})
+
+app.put('/markets/:id', async (req, res) => {
+    const { id } = req.params;
+    const market = await Market.findByIdAndUpdate(id, { ...req.body.market });
+    res.redirect(`/markets/${market._id}`)
+});
+
+app.delete('/markets/:id', async (req, res) => {
+    const { id } = req.params;
+    await Market.findByIdAndDelete(id);
+    res.redirect('/markets');
+})
 
 app.get('/results', async(req, res) => {
     // Extract the query parameters from the request

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Market</title>
+</head>
+
+<body>
+    <h1>Edit Market</h1>
+    <form action="/markets/<%=market._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="name">Market Name</label>
+            <input type="text" id="name" name="market[MarketName]" value="<%=market.MarketName %>">
+        </div>
+        <div>
+            <label for="location">Address</label>
+            <input type="text" id="location" name="market[StreetAddress]" value="<%= market.StreetAddress%>">
+        </div>
+        <button>Update Market</button>
+    </form>
+    <a href="/markets/<%= market._id%>">Back To Market</a>
+
+</body>
+
+</html>

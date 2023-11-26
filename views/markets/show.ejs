@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+
+<body>
+    <h1><%= market.MarketName %></h1>
+    <h2><%= market.StreetAddress %></h2>
+    <p> <a href="/markets/<%=market._id%>/edit">Edit</a>
+    </p>
+    <p>
+    <form action="/markets/<%=market._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+    </p>
+    <footer>
+        <a href="/markets">All Markets</a>
+    </footer>
+</body>
+
+</html>
