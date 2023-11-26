@@ -1,0 +1,26 @@
+<head>
+    <link rel="stylesheet" href="/styesheets/result.css">
+</head>
+
+
+<% if (markets && markets.length > 0) { %>
+    <div class="card-container">
+        <% markets.forEach(function(market) { %>
+            <div class="card">
+                <div class="container">
+                    <h4><b><%= market.marketname %></b></h4>
+                    <p>Borough: <%= market.borough %></p>
+                    <p>Address: <%= market.streetaddress %></p>
+                    <p>Community District: <%= market.community_district %></p>
+                    <p>Days of Operation: <%= market.daysoperation %></p>
+                    <p>Hours of Operation: <%= market.hoursoperations %></p>
+                    <p>Accepts EBT: <%= market.accepts_ebt %></p>
+                    <p>NYC Health Cooking: <%= market.nyc_dept_of_health_cooking %></p>
+                    <p>Activities for Kids: <%= market.kids %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } else { %>
+    <p>No markets found that match your criteria.</p>
+<% } %>

@@ -1,0 +1,57 @@
+/* result.css */
+body {
+    font-family: Arial, sans-serif;
+    /*background: #f4f4f4;*/
+    margin: 0;
+    padding: 20px;
+    background-image: url('../imgs/farmer-market.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    /*background: lightsteelblue;*/
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(33.333% - 20px);
+    margin-bottom: 20px;
+}
+
+.card h4 {
+    background: lightsteelblue;
+    color: #fff;
+    margin: 0;
+    padding: 10px 15px;
+}
+
+.card .container {
+    padding: 15px;
+}
+
+.card p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+    }
+}

@@ -1,0 +1,39 @@
+body {
+    background-image: url('../imgs/farmer-market.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* This will take the full height of the viewport */
+}
+
+form {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+form select,
+form input[type="text"],
+form button {
+    width: 100%; /* Full width */
+    padding: 10px;
+    margin: 10px 0; /* Add space between fields */
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+form button {
+    background-color: #009688;
+    color: white;
+    cursor: pointer;
+}
+
