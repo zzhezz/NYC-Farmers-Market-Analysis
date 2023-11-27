@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const ejsMate = require('ejs-mate');
 const Market = require('./models/market');
 const methodOverride = require('method-override');
+const Review = require('./models/review');
 
 require('dotenv').config();
 app.engine('ejs', ejsMate);
@@ -53,7 +54,7 @@ app.post('/markets', async (req, res) => {
 })
 
 app.get('/markets/:id', async (req, res,) => {
-    const market = await Market.findById(req.params.id)
+    const market = await Market.findById(req.params.id).populate('reviews');
     res.render('markets/show', { market });
 });
 
@@ -72,6 +73,22 @@ app.delete('/markets/:id', async (req, res) => {
     const { id } = req.params;
     await Market.findByIdAndDelete(id);
     res.redirect('/markets');
+})
+
+app.post('/markets/:id/reviews', async (req, res) => {
+    const market = await Market.findById(req.params.id);
+    const review = new Review(req.body.review);
+    market.reviews.push(review);
+    await review.save();
+    await market.save();
+    res.redirect(`/markets/${market._id}`);
+})
+
+app.delete('/markets/:id/reviews/:reviewId', async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Market.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/markets/${id}`);
 })
 
 app.get('/results', async(req, res) => {
