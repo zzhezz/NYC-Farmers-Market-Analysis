@@ -9,8 +9,8 @@
                 <p class="card-text"><%= market.Description%></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= market.StreetAddress%></li>
-                <li class="list-group-item text-muted"><%= market.Borough%> </li>
+                <li class="list-group-item"><%= market.StreetAddress%> <%= market.Borough%> </li>
+                <li class="list-group-item text-muted"><%= market.DaysOfOperation%> <%= market.HoursOfOperations %></li>
             </ul>
             <div class="card-body">
                 <a class="card-link btn btn-info" href="/markets/<%=market._id%>/edit">Edit</a>
