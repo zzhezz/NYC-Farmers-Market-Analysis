@@ -10,7 +10,9 @@ const MarketSchema = new mongoose.Schema({
   HoursOfOperations: String,
   AcceptsEBT: String,
   FoodActivitiesForKids: String,
-  LocationPoint: String
+  LocationPoint: String,
+  Img: String,
+  Description: String
 });
 
 module.exports = mongoose.model('Market', MarketSchema);

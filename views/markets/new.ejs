@@ -1,51 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">New Market</h1>
+    <div class="col-6 offset-3">
+        <form action="/markets" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="title">Market Name</label>
+                <input class="form-control" type="text" id="title" name="market[MarketName]">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="market[StreetAddress]">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="market[Img]">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="borough">Borough</label>
+                <input class="form-control" type="text" id="borough" name="market[Borough]">
+            </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Market<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Market</title>
-</head>
-
-<body>
-    <form action="/markets" method="POST">
-        <div>
-            <label for="title">Name</label>
-            <input type="text" id="title" name="market[MarketName]">
-        </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="market[StreetAddress]">
-        </div>
-        <button>Add Market</button>
-    </form>
-    <a href="/markets">All Markets</a>
-
-</body>
-
-</html></title>
-</head>
-
-<body>
-    <form action="/markets" method="POST">
-        <div>
-            <label for="title">Name</label>
-            <input type="text" id="title" name="market[MarketName]">
-        </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="market[StreetAddress]">
-        </div>
-        <button>Add Market</button>
-    </form>
-    <a href="/markets">All Markets</a>
-
-</body>
-
-</html>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="market[Description]"></textarea>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Market</button>
+            </div>
+        </form>
+        <a href="/markets">All Farmers Markets</a>
+    </div>
+</div>

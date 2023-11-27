@@ -2,10 +2,12 @@ var express = require('express');
 var app = express();
 const path = require('path');
 const mongoose = require("mongoose");
+const ejsMate = require('ejs-mate');
 const Market = require('./models/market');
 const methodOverride = require('method-override');
 
 require('dotenv').config();
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 const map_api = process.env.mapboxToken;
@@ -13,7 +15,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(methodOverride('_method'));
 const axios = require('axios');
 
-mongoose.connect("mongodb://127.0.0.1:27017/test", {
+mongoose.connect("mongodb://127.0.0.1:27017/farmers-market", {
   useNewUrlParser: true
 });
 
@@ -82,15 +84,6 @@ app.get('/results', async(req, res) => {
         const apiResponse = await axios.get('https://data.cityofnewyork.us/resource/8vwk-6iz2.json');
 
         const filteredMarkets = apiResponse.data.filter(market => {
-            if((!borough || (market.borough && market.borough.toLowerCase() === borough.toLowerCase())) &&
-                (!marketName || (market.marketname && market.marketname.toLowerCase().includes(marketName.toLowerCase()))) &&
-                (!daysOpened || (market.daysoperation && market.daysoperation.toLowerCase()===daysOpened.toLowerCase())) &&
-                (!activities || (market.kids && market.kids.toLowerCase() === activities.toLowerCase())) &&
-                (!acceptsEBT || (market.accepts_ebt && market.accepts_ebt.toLowerCase() === acceptsEBT.toLowerCase())) &&
-                (!communityDistrict || (market.community_district && market.community_district === communityDistrict))){
-                    console.log(market);
-                }
-
             return (
                 (!borough || (market.borough && market.borough.toLowerCase() === borough.toLowerCase())) &&
                 (!marketName || (market.marketname && market.marketname.toLowerCase().includes(marketName.toLowerCase()))) &&

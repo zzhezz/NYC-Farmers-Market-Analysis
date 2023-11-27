@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Edit Market</h1>
+    <div class="col-6 offset-3">
+        <form action="/markets/<%=market._id%>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="market[MarketName]"
+                    value="<%=market.MarketName %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="market[StreetAddress]"
+                    value="<%=market.StreetAddress %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="market[Img]"
+                    value="<%=market.Img %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="borough">Borough</label>
+                <input type="text" class="form-control" id="borough" 
+                        name="market[borough]" value="<%=market.Borough %>">
+            </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Market</title>
-</head>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description"
+                    name="market[Description]"><%= market.Description%></textarea>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update Market</button>
+            </div>
+        </form>
+        <a href="/markets/<%= market._id%>">Back To Market</a>
 
-<body>
-    <h1>Edit Market</h1>
-    <form action="/markets/<%=market._id%>?_method=PUT" method="POST">
-        <div>
-            <label for="name">Market Name</label>
-            <input type="text" id="name" name="market[MarketName]" value="<%=market.MarketName %>">
-        </div>
-        <div>
-            <label for="location">Address</label>
-            <input type="text" id="location" name="market[StreetAddress]" value="<%= market.StreetAddress%>">
-        </div>
-        <button>Update Market</button>
-    </form>
-    <a href="/markets/<%= market._id%>">Back To Market</a>
-
-</body>
-
-</html>
+    </div>
+</div>
